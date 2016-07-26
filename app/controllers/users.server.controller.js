@@ -50,7 +50,7 @@ exports.signup = function(req, res, next) {
 		var user = new User(req.body);
 		var message = null;
 
-		user.provicer = 'local';
+		user.provider = 'local';
 
 		user.save(function(err) {
 			if (err) {
@@ -59,8 +59,9 @@ exports.signup = function(req, res, next) {
 				req.flash('error', message);
 				return res.redirect('/signup');
 			}
+			
 			req.login(user, function(err) {
-				if (err) return next(err);
+				// if (err) return next(err);
 				return res.redirect('/');
 			});
 		});
