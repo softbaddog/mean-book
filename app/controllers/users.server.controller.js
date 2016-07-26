@@ -16,7 +16,8 @@ var getErrorMessage = function(err) {
 		}
 	} else {
 		for (var errName in err.errors) {
-			if (err.errors[errName].message) message = err.errors[errName].message;
+			if (err.errors[errName].message) 
+				message = err.errors[errName].message;
 		}
 	}
 	return message;
@@ -24,7 +25,7 @@ var getErrorMessage = function(err) {
 
 exports.renderSignin = function(req, res, next) {
 	if (!req.user) {
-		res.render('sigin', {
+		res.render('signin', {
 			title: 'Sign-in Form',
 			message: req.flash('error') || req.flash('info')
 		});
@@ -33,18 +34,18 @@ exports.renderSignin = function(req, res, next) {
 	}
 };
 
-exports.signup = function(req, res, next) {
+exports.renderSignup = function(req, res, next) {
 	if (!req.user) {
-		res.render('sigup', {
+		res.render('signup', {
 			title: 'Sign-up Form',
-			message: req.flash('error')
+			messages: req.flash('error')
 		});
 	} else {
 		return res.redirect('/');
 	}
 };
 
-exports.sigup = function(req, res, next) {
+exports.signup = function(req, res, next) {
 	if (!req.user) {
 		var user = new User(req.body);
 		var message = null;
@@ -56,12 +57,10 @@ exports.sigup = function(req, res, next) {
 				var message = getErrorMessage(err);
 
 				req.flash('error', message);
-				return res.redirect('/sigup');
+				return res.redirect('/signup');
 			}
 			req.login(user, function(err) {
-				if (err) {
-					return next(err);
-				}
+				if (err) return next(err);
 				return res.redirect('/');
 			});
 		});
@@ -70,7 +69,7 @@ exports.sigup = function(req, res, next) {
 	}
 };
 
-exports.sigout = function(req, res) {
+exports.signout = function(req, res) {
 	req.logout();
 	res.redirect('/');
 };

@@ -1,5 +1,20 @@
+var users = require("../controllers/users.server.controller"),
+	passport = require('passport');
+
 module.exports = function(app) {
-	var users = require("../controllers/users.server.controller");
+	app.route('/signup')
+		.get(users.renderSignup)
+		.post(users.signup);
+
+	app.route('/signin')
+		.get(users.renderSignin)
+		.post(passport.authenticate('local', {
+			successRedirect: '/',
+			failureRedirect: '/signin',
+			failureFlash: true
+		}));
+
+	app.route('/sigout', users.signout);
 
 	app.route('/users')
 		.post(users.create)

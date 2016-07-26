@@ -5,6 +5,7 @@ module.exports = function() {
 	var User = Mongoose.model('User');
 
 	Passport.serializeUser(function(user, done) {
+		console.log("序列化：" + user.id);
 		done(null, user.id);
 	});
 
@@ -15,5 +16,6 @@ module.exports = function() {
 			done(err, user);
 		});
 	});
+
 	require('./strategies/local.js')();
 };

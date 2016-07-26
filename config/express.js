@@ -1,20 +1,21 @@
-var config = require("./config"),
-	mongoose = require("./mongoose"),
-	express = require("express"),
-	morgan = require("morgan"),
-	compress = require("compression"),
-	bodyParser = require("body-parser"),
-	methodOverride = require("method-override"),
-	session = require("express-session"),
-	passport = require("passport");
+var config = require('./config'),
+	mongoose = require('./mongoose'),
+	express = require('express'),
+	morgan = require('morgan'),
+	compress = require('compression'),
+	bodyParser = require('body-parser'),
+	methodOverride = require('method-override'),
+	session = require('express-session'),
+	flash = require('connect-flash'),
+	passport = require('passport');
 
 module.exports = function() {
 	var db = mongoose();
 	var app = express();
 
-	if (process.env.NODE_ENV === "development") {
+	if (process.env.NODE_ENV === 'development') {
 		app.use(morgan('dev'));
-	} else if (process.env.NODE_ENV === "production") {
+	} else if (process.env.NODE_ENV === 'production') {
 		app.use(compress());
 	}
 
@@ -31,16 +32,18 @@ module.exports = function() {
 		secret: config.sessionSecret
 	}));
 
-	app.set("views", "./app/views");
-	app.set("view engine", "ejs");
+	app.set('views', './app/views');
+	app.set('view engine', 'ejs');
+
+	app.use(flash());
 
 	app.use(passport.initialize());
 	app.use(passport.session());
 
-	app.use(express.static("./public"));
+	app.use(express.static('./public'));
 
-	require("../app/routes/index.server.routes.js")(app);
-	require("../app/routes/users.server.routes.js")(app);
+	require('../app/routes/index.server.routes.js')(app);
+	require('../app/routes/users.server.routes.js')(app);
 
 	return app;
 };

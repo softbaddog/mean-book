@@ -11,19 +11,19 @@ module.exports = function() {
 				return done(err);
 			}
 
-			if (!user) {
+			if (!User) {
 				return done(null, false, {
 					message: 'Unknow user'
 				});
 			}
 
-			if (!user.authenticate(password)) {
+			if (!User.authenticate(password)) {
 				return done(null, false, {
 					message: 'Invalid password'
 				});
 			}
 
-			return done(null, user);
+			return done(null, User);
 		});
 	}));
 };

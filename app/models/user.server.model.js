@@ -1,5 +1,5 @@
 var Mogoose = require('mongoose'),
-	Crypto = required('crypto'),
+	Crypto = require('crypto'),
 	Schema = Mogoose.Schema;
 
 var UserSchema = new Schema({
@@ -56,7 +56,7 @@ var UserSchema = new Schema({
 	},
 	provider: {
 		type: String,
-		required: 'Provider is required'
+		// required: 'Provider is required'
 	},
 	providerId: String,
 	providerData: {},
@@ -76,14 +76,14 @@ UserSchema.virtual('fullName').get(function() {
 
 UserSchema.pre('save', function(next) {
 	if (this.password) {
-		this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
+		this.salt = new Buffer(Crypto.randomBytes(16).toString('base64'), 'base64');
 		this.password = this.hashPassword(this.password);
 	}
 	next();
 });
 
 UserSchema.methods.hashPassword = function(password) {
-	return crypto.pbkdf2Sync(password, this.salt, 10000, 64).toString('base64');
+	return Crypto.pbkdf2Sync(password, this.salt, 10000, 64).toString('base64');
 };
 
 UserSchema.methods.authenticate = function(password) {
