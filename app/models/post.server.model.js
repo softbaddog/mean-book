@@ -1,7 +1,7 @@
-var Mogoose = require("mongoose"),
-	Schema = Mogoose.Schema;
+var mogoose = require("mongoose"),
+	Schema = mogoose.Schema;
 
-var PostSchema = new Schema({
+var postSchema = new Schema({
 	title: {
 		type: String,
 		required: true

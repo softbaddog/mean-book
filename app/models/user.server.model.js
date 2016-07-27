@@ -1,8 +1,8 @@
-var Mogoose = require('mongoose'),
-	Crypto = require('crypto'),
-	Schema = Mogoose.Schema;
+var mongoose = require('mongoose'),
+	crypto = require('crypto'),
+	Schema = mongoose.Schema;
 
-var UserSchema = new Schema({
+var userSchema = new Schema({
 	firstName: String,
 	lastName: String,
 	email: {
@@ -66,7 +66,7 @@ var UserSchema = new Schema({
 	}
 });
 
-UserSchema.virtual('fullName').get(function() {
+userSchema.virtual('fullName').get(function() {
 	return this.firstName + ' ' + this.lastName;
 }).set(function(fullName) {
 	var splitName = fullName.split(' ');
@@ -74,23 +74,23 @@ UserSchema.virtual('fullName').get(function() {
 	this.lastName = splitName[1] || '';
 });
 
-UserSchema.pre('save', function(next) {
+userSchema.pre('save', function(next) {
 	if (this.password) {
-		this.salt = new Buffer(Crypto.randomBytes(16).toString('base64'), 'base64');
+		this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
 		this.password = this.hashPassword(this.password);
 	}
 	next();
 });
 
-UserSchema.methods.hashPassword = function(password) {
-	return Crypto.pbkdf2Sync(password, this.salt, 10000, 64).toString('base64');
+userSchema.methods.hashPassword = function(password) {
+	return crypto.pbkdf2Sync(password, this.salt, 10000, 64).toString('base64');
 };
 
-UserSchema.methods.authenticate = function(password) {
+userSchema.methods.authenticate = function(password) {
 	return this.password === this.hashPassword(password);
 };
 
-UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
+userSchema.statics.findUniqueUsername = function(username, suffix, callback) {
 	var _this = this;
 	var possibleUsername = username + (suffix || '');
 
@@ -110,9 +110,9 @@ UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
 };
 
 
-UserSchema.set('toJSON', {
+userSchema.set('toJSON', {
 	getters: true,
 	virtuals: true
 });
 
-Mogoose.model('User', UserSchema);
+mongoose.model('User', userSchema);

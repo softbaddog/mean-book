@@ -16,7 +16,7 @@ var getErrorMessage = function(err) {
 		}
 	} else {
 		for (var errName in err.errors) {
-			if (err.errors[errName].message) 
+			if (err.errors[errName].message)
 				message = err.errors[errName].message;
 		}
 	}
@@ -59,9 +59,9 @@ exports.signup = function(req, res, next) {
 				req.flash('error', message);
 				return res.redirect('/signup');
 			}
-			
+
 			req.login(user, function(err) {
-				// if (err) return next(err);
+				if (err) return next(err);
 				return res.redirect('/');
 			});
 		});
