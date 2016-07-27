@@ -1,14 +1,14 @@
-var Passport = require('passport'),
-	Mongoose = require('mongoose');
+var passport = require('passport'),
+	mongoose = require('mongoose');
 
 module.exports = function() {
-	var User = Mongoose.model('User');
+	var User = mongoose.model('User');
 
-	Passport.serializeUser(function(user, done) {
+	passport.serializeUser(function(user, done) {
 		done(null, user.id);
 	});
 
-	Passport.deserializeUser(function(id, done) {
+	passport.deserializeUser(function(id, done) {
 		User.findOne({
 			_id: id
 		}, '-password -salt', function(err, user) {
