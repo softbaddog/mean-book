@@ -29,6 +29,7 @@ build/Release
 # Dependency directories
 node_modules
 jspm_packages
+public/lib
 
 # Optional npm cache directory
 .npm
@@ -36,42 +37,3 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
-public/lib/angular-route/.bower.json
-
-public/lib/angular-route/angular-route.js
-
-public/lib/angular-route/angular-route.min.js
-
-public/lib/angular-route/bower.json
-
-public/lib/angular-route/angular-route.min.js.map
-
-public/lib/angular/README.md
-
-public/lib/angular/package.json
-
-public/lib/angular/LICENSE.md
-
-public/lib/angular/index.js
-
-public/lib/angular/bower.json
-
-public/lib/angular/angular.min.js.map
-
-public/lib/angular/angular.min.js.gzip
-
-public/lib/angular/angular.min.js
-
-public/lib/angular/angular.js
-
-public/lib/angular/angular-csp.css
-
-public/lib/angular/.bower.json
-
-public/lib/angular-route/README.md
-
-public/lib/angular-route/package.json
-
-public/lib/angular-route/LICENSE.md
-
-public/lib/angular-route/index.js
