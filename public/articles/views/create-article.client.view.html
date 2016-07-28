@@ -1,6 +1,6 @@
 <section data-ng-controller="ArticlesController">
-	<h1>New Article
-		<form action="" data-ng-submit="create()" novalidate="">
+	<h1>New Article</h1>
+		<form data-ng-submit="create()" novalidate>
 			<div>
 				<label for="title">Title</label>
 				<div>
@@ -10,7 +10,7 @@
 			<div>
 				<label for="content">Content</label>
 				<div>
-					<textarea name="" id="content" cols="30" rows="10" data-ng-model="content" placeholder="Content"></textarea>
+					<textarea data-ng-model="content" id="content" cols="30" rows="10" placeholder="Content"></textarea>
 				</div>
 			</div>
 			<div>
