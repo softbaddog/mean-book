@@ -14,7 +14,7 @@ module.exports = function(app) {
 			failureFlash: true
 		}));
 
-	app.route('/sigout', users.signout);
+	app.route('/signout', users.signout);
 
 	app.route('/users')
 		.post(users.create)
