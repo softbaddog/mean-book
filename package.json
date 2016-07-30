@@ -1,6 +1,19 @@
 {
-  "name": "MEAN",
-  "version": "0.0.1",
+  "name": "mean-book",
+  "version": "0.0.2",
+  "description": "My First MEAN Application",
+  "main": "server.js",
+  "script": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "MongoDB",
+    "Express",
+    "AngularJS",
+    "Node.js"
+  ],
+  "anthor": "Fu Wei",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.15.2",
     "compression": "^1.6.2",

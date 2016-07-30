@@ -1,5 +1,4 @@
 var config = require('./config'),
-	mongoose = require('./mongoose'),
 	express = require('express'),
 	morgan = require('morgan'),
 	compress = require('compression'),
@@ -10,7 +9,6 @@ var config = require('./config'),
 	passport = require('passport');
 
 module.exports = function() {
-	var db = mongoose();
 	var app = express();
 
 	if (process.env.NODE_ENV === 'development') {
@@ -42,6 +40,7 @@ module.exports = function() {
 
 	app.use(express.static('./public'));
 
+	// 导入路由文件
 	require('../app/routes/index.server.routes.js')(app);
 	require('../app/routes/users.server.routes.js')(app);
 	require('../app/routes/articles.server.routes.js')(app);
