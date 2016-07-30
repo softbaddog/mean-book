@@ -5,7 +5,8 @@
 			<a data-ng-href="#!/articles/{{article._id}}" data-ng-bind="article.title"></a>
 			<br>
 			<small data-ng-bind="article.created | date:'medium'"></small>
-			<small></small>
+			<small>/</small>
+			<small data-ng-bind="article.creator.fullName"></small>
 			<p data-ng-bind="article.content"></p>
 		</li>
 	</ul>
