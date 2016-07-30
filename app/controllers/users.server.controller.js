@@ -72,7 +72,6 @@ exports.signup = function(req, res, next) {
 
 exports.signout = function(req, res) {
 	req.logout();
-	console.log('logout');
 	res.redirect('/');
 };
 
