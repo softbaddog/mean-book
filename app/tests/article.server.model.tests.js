@@ -1,8 +1,8 @@
-var app = require('../../server.js'),
-	should = require('should'),
-	mongoose = require('mongoose'),
-	User = mongoose.model('User'),
-	Article = mongoose.model('Article');
+var app = require('../../server.js');
+var	should = require('should');
+var	mongoose = require('mongoose');
+var	User = mongoose.model('User');
+var	Article = mongoose.model('Article');
 
 var user, article;
 

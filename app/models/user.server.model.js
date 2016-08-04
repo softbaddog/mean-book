@@ -1,6 +1,6 @@
-var mongoose = require('mongoose'),
-	crypto = require('crypto'),
-	Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+var	Schema = mongoose.Schema;
+var	crypto = require('crypto');
 
 var userSchema = new Schema({
 	firstName: String,
@@ -98,7 +98,6 @@ userSchema.statics.findUniqueUsername = function(username, suffix, callback) {
 		}
 	});
 };
-
 
 userSchema.set('toJSON', {
 	getters: true,

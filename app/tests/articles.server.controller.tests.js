@@ -1,9 +1,9 @@
-var app = require('../../server'),
-	request = require('supertest'),
-	should = require('should'),
-	mongoose = require('mongoose'),
-	User = mongoose.model('User'),
-	Article = mongoose.model('Article');
+var app = require('../../server');
+var	request = require('supertest');
+var	should = require('should');
+var	mongoose = require('mongoose');
+var	User = mongoose.model('User');
+var	Article = mongoose.model('Article');
 
 var user, article;
 
